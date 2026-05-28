@@ -16,18 +16,6 @@ const server = http.createServer(async (req, res) => {
   if (urlObj.pathname === "/api" && req.method === "GET") {
     let filteredData = getDataByQueryParams(destinations, queryObj);
     sendJSONResponse(res, 200, filteredData);
-
-    /*
-Challenge:
-
-  1. Update filteredData so it holds only the objects the client wants 
-     based on query params. If the client doesn’t use any query params, 
-     serve all of the data.
-     The query params we are accepting are:
-     'country', 'continent', and 'is_open_to_public'.
-
-     Keep our code tidy by doing the the filtering in a util function.
-*/
   } else if (req.url.startsWith("/api/continent") && req.method === "GET") {
     const continent = req.url.split("/").pop();
     const filteredData = getDataByPathParams(
